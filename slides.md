@@ -49,6 +49,10 @@ class: text-3xl bg-gray-300 text-gray-600
   <li>Ecological Awareness</li>
 </ol>
 
+We are following the DWeb Code of Conduct
+
+Learn more at [getdweb.net](https://getdweb.net/)
+
 ---
 class: text-2xl bg-gray-300 text-gray-600
 ---
