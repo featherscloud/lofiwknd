@@ -3,15 +3,90 @@ theme: ./theme
 class: text-center
 highlighter: shiki
 lineNumbers: false
-info: |
-  ## Building local-first apps
-  An overview of the emerging technologies
+info: Vancouver DWeb Local First Weekend
 transition: slide-left
-title: Building local-first apps
-background: /images/moonbase.svg
+title: DWeb Local First Weekend
+background: /images/lofiwkndyvr.svg
 ---
 
-<h1 style="font-weight: 400; color: #FED06C;" class="m--40 drop-shadow-lg">Building local-first apps</h1>
+---
+class: text-2xl bg-white text-center text-gray-600
+---
+
+<h1 style="font-size: 3rem;">Where are we?</h1>
+
+<img src="/images/z-space-logo.jpg" alt="Z-Space Logo" style="margin: 0 auto;" />
+
+---
+class: text-2xl bg-white text-center text-gray-600
+---
+
+<h1 style="font-size: 3rem;" class="pb-8">Who are we?</h1>
+
+<img src="/images/sponsor-logos.png" alt="Z-Space Logo" style="margin: 0 auto;" />
+
+---
+class: text-2xl bg-gray-300 text-gray-600
+---
+
+<h1 style="font-size: 3rem">What's DWeb</h1>
+
+<p>DWeb connects the people, projects and protocols essential to building a decentralized web. A web that is more private, reliable, secure and open. A web with many winners—returning to the original vision of the World Wide Web and internet.</p>
+
+<img src="/images/dwebyvr-logo.svg" style="margin: 0 auto;" width="300" alt="Webassembly image" />
+
+---
+class: text-3xl bg-gray-300 text-gray-600
+---
+
+<h1 style="font-size: 3rem">DWeb principles</h1>
+
+<ol class="pl-6">
+  <li>Technology for Human Agency</li>
+  <li>Distributed Benefits</li>
+  <li>Mutual Respect</li>
+  <li>Humanity</li>
+  <li>Ecological Awareness</li>
+</ol>
+
+---
+class: text-2xl bg-gray-300 text-gray-600
+---
+
+<h1 style="font-size: 3rem">What's local first software?</h1>
+
+<ol class="pl-6">
+  <li>No spinners: your work at your fingertips</li>
+  <li>Your work is not trapped on one device</li>
+  <li>The network is optional</li>
+  <li>Seamless collaboration with your colleagues</li>
+  <li>The Long Now</li>
+  <li>Security and privacy by default</li>
+  <li>You retain ultimate ownership and control</li>
+</ol>
+
+---
+class: text-2xl bg-gray-300 text-gray-600
+---
+
+<h1 style="font-size: 3rem">Why local first?</h1>
+
+<ul class="pl-6">
+  <li>Fast</li>
+  <li>100% uptime</li>
+  <li>Works offline</li>
+  <li>Easy to deploy</li>
+  <li>Built in security</li>
+  <li>Scalable</li>
+  <li>Actually serverless</li>
+</ul>
+
+---
+class: text-center
+layout: cover
+---
+
+<img src="/images/logo-cloud.svg" class="invert w-1/2 mx-auto" alt="Feathers Cloud" />
 
 ---
 class: text-center
@@ -40,8 +115,8 @@ layout: cover
 </ul>
 
 ---
+class: text-4xl
 layout: cover
-class: text-center
 ---
 
 # The browser is a _universal_ application platform
@@ -49,134 +124,18 @@ class: text-center
 <img alt="Universal" src="/images/universal.svg" class="mx-a w-70" />
 
 ---
-class: text-2xl
-layout: image-right
-image: /images/professor-bird.svg
----
-
-# Why local first?
-
-- Fast
-- 100% uptime
-- Works offline
-- Easy to deploy
-- Built in security
-- Scalable
-- Actually serverless
-
----
-layout: cover
-class: text-center
----
-
-# Identity
-
-<img alt="Identity" src="/images/icons/security.svg" class="mx-a w-70" />
-
----
 class: text-xl
 ---
 
-# Basic username and password
+<img alt="Feathers Cloud logo" class="invert w-1/2 mx-auto" src="/images/logo-cloud.svg" />
 
-Built into HTTP, it sends the username and password as a Base64 encoded string.
+<h1 class="text-center my-5">Auth</h1>
 
-```sh
-GET /example HTTP/1.1
-Host: www.example.com
-Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-```
+Feathers Cloud Auth connects traditional passwordless login mechanisms like Email, Passkey, Social, SMS or MFA with decentralised identities to create local-first applications and serverless APIs with JavaScript and TypeScript.
 
-Via the [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API:
-
-```ts
-const response = await fetch('/example', {
-  headers: {
-    Authorization: `Basic ${btoa('myusername:mypassword')}`
-  }
-})
-```
-
----
-class: text-xl
----
-
-# API keys
-
-A string identifying the sender usually passed in a custom (`X-`) header
-
-```sh
-GET /api/resource HTTP/1.1
-Host: api.example.com
-X-API-Key: abcdef12345
-```
-
-Via the [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API:
-
-```ts
-const response = await fetch('/example', {
-  headers: {
-    'X-API-Key': 'abcdef12345'
-  }
-})
-```
-
----
-
-# JSON Web Token (JWT)
-
-Used to send claims (payload) between parties, in an HTTP header as `Bearer` authorization. It consists of Base64 encoded JSON data in the form of `HEADER.PAYLOAD.SIGNATURE`. `PAYLOAD` may include pre-defined values (like `iss`, `aud` and `eat`) and any other property.
-
-```sh
-GET /example HTTP/1.1
-Host: www.example.com
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOm51bGx9.eyJpc3MiOiJEYXZpZCIsIm1lc3NhZ2UiOiJIaSJ9
-```
-
-In the browser:
-
-```ts
-const header = { typ: 'JWT', alg: null }
-const payload = { iss: 'David', message: 'Hi' }
-
-const jwt = btoa(JSON.stringify(header)) + '.' + btoa(JSON.stringify(payload))
-const response = await fetch('/example', {
-  headers: {
-    Authorization: `Bearer ${jwt}`
-  }
-})
-const signedJwt = jwt + '.' + calculateSignature(jwt, 'mysupersecret')
-```
-
----
-
-# Public key cryptography
-
-```sh
-# Generate private key
-openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048
-  -out private_key.pem.pem
-
-# Generate public key
-openssl rsa -pubout -in private_key.pem
-  -out public_key.pem
-```
-
-We can do this now securely in the browser with the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API).
-
-### public_key.pem
-
-```
------BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwGbSJdNKAg8Lk3f/P1JQ
-Tox23cnApcEy8e/gBDC0dfz76aO8q+W0XpmltMIwLhol+B9uGPmW3iM7siCVnHox
-ztr/uWvWGHt7mRn1wLzNRh8YxZS9IWqjVMDyp8RzCPdUbkZRSmfuvV/ZVOp1kBRe
-182GiP3ng636bOTuLB538E/CSXQBRzxxKEwC9iXJcM1TFlbV3Pw+7w8Sd+1iR4RQ
-uwmVjFsVO+1DmNAeNu/wjMeM+HoXGa+vYG/7L8zewgIv8R6vE6bqvhFbs1Y/ilEj
-XMEANUJed7J+tUwxG8okPPHFivwbXcN4Far6Esd2SQCmwP8P9fDeC8fzXxx9deWP
-XQIDAQAB
------END PUBLIC KEY-----
-```
+- [feathers.cloud](https://feathers.cloud)
+- [dwebchat.feathers.cloud](https://dwebchat.feathers.cloud/)
+- [github.com/featherscloud/chat](https://github.com/featherscloud/chat)
 
 ---
 layout: two-cols
@@ -206,198 +165,19 @@ console.log(await auth.getDeviceId())
 <img alt="Devices" src="/images/icons/devices.svg" />
 
 ---
-
-# Self verifying JWTs
-
-If we include the sender DID (public key) in the JWT payload and sign everything with our private key, we can verify the JWT without any additional knowledge.
-
-```ts
-import { createClient } from '@featherscloud/auth'
-
-const auth = createClient({
-  appId: '<app-DID-here>'
-})
-const did = await auth.getDeviceId()
-const header = { typ: 'JWT', alg: 'ED25519' }
-const payload = {
-  iss: did,
-  message: 'Hi'
-}
-const jwt = btoa(JSON.stringify(header)) + '.' + btoa(JSON.stringify(payload))
-
-const signature = await auth.sign(new TextEncoder().encode(jwt))
-const signedJwt = jwt + '.' + signature
-```
-
----
-class: text-xl
----
-
-# UCAN
-
-User Controlled Authorization Networks ([UCANs](https://ucan.xyz/)) enable a scalable and secure way of authorizing offline-first apps and distributed systems.
-
-<img src="/images/ucan.png" class="w-8/12 mx-a mt-8" />
-
----
-class: text-xl
----
-
-<img alt="Feathers Cloud logo" class="invert w-1/2 mx-auto" src="/images/logo-cloud.svg" />
-
-<h1 class="text-center my-5">Auth</h1>
-
-Feathers Cloud Auth connects traditional passwordless login mechanisms like Email, Passkey, Social, SMS or MFA with decentralised identities to create local-first applications and serverless APIs with JavaScript and TypeScript.
-
-- [app.feathers.cloud](https://app.feathers.cloud)
-- [github.com/featherscloud/auth-starters](https://github.com/featherscloud/auth-starters)
-
----
-layout: cover
-background: /images/passkey.png
-class: text-xl
----
-
-# Passkey
-
-## A digital credential for passwordless authentication stored securely in the operating system, browser or hardware.
-
-*Supported by over 99% of devices.*
-
----
-layout: cover
-class: text-center
----
-
-# Database
-
-<img alt="Database" src="/images/database.svg" class="mx-a w-70" />
-
----
-class: text-xl
-layout: image-right
-image: /images/sync-birds.svg
----
-
-# CRDTs
-
-A Conflict-free replicated data type (CRDT) is a data structure that can be synchronised across devices.[^1]
-
-- Works offline
-- Resolves conflicts automatically
-- Instant local updates
-- No server necessary
-
-<br>
-<br>
-
-[^1]: [An Interactive Intro to CRDTs](https://jakelazaroff.com/words/an-interactive-intro-to-crdts/)
-
----
-
-# Automerge
-
-```ts
-import { Repo } from '@automerge/automerge-repo'
-import { BroadcastChannelNetworkAdapter } from '@automerge/automerge-repo-network-broadcastchannel'
-import { IndexedDBStorageAdapter } from "@automerge/automerge-repo-storage-indexeddb"
-
-const repo = new Repo({
-  network: [
-    new BroadcastChannelNetworkAdapter(),
-  ],
-  storage: new IndexedDBStorageAdapter()
-})
-
-const handle = repo.create() 
-// Or find an existing document
-handle = repo.find('automerge:45NuQi1e45PKsemx8GhSCu62gyag')
-
-handle.change(doc => {
-  doc.messages.push({
-    text: 'A new message'
-  })
-})
-
-handle.on('change', ({doc}) => {})
-```
-
----
-
-<QRCode page="12" />
-
----
-
-<CRDTDemo />
-
----
-layout: cover
-class: text-center
----
-
-# Storage
-
-<img alt="Storage" src="/images/storage.svg" class="mx-a w-70" />
-
----
-class: text-xl
----
-
-# Content addressing
-
-Gives _every_ file and directory a unique hash that can be used to look it up peer-to-peer from the closest phone/computer/server.
-
-
-```html
-<html>
-  <body>
-    <h1>Hello VanJS! 👋</h1>
-  </body>
-</html>
-```
-
-Can be accessed via [IPFS](https://www.ipfs.tech/) as:
-
-[ipfs://QmU3JRrRWESWX3ywNVx1A5zkSgpnwztniPhjNHG42yrtsG](https://cf-ipfs.com/ipfs/QmU3JRrRWESWX3ywNVx1A5zkSgpnwztniPhjNHG42yrtsG)
-
-
----
-class: text-center bg-gray-300
----
-
-![IPFS network structure](/images/http-vs-ipfs.png)
-
-# Compute
-
-<img alt="Compute" src="/images/compute.svg" class="mx-a w-70" />
-
----
-class: bg-gray-300 text-xl
----
-
-<h1 style="color: #343979;">Webassembly</h1>
-
-<p style="color: #343979;">A binary instruction format for high-performance web applications in any language.</p>
-
-<img src="/images/webassembly.png" alt="Webassembly image" />
-
----
 class: text-2xl
 layout: two-cols
 ---
 
-# Thank you!
+# Links!
 
-- [app.feathers.cloud](https://app.feathers.cloud)
-- [github.com/featherscloud/auth-starters](https://github.com/featherscloud/auth-starters)
-
-- [feathersjs.com](https://feathersjs.com)
-- [IPFS](https://ipfs.tech)
-- [CRDT.tech](https://crdt.tech/)
-- [Automerge](https://automerge.org/)
-- [Passkey](https://www.passkeys.com/)
-- [UCAN](https://ucan.xyz)
-- [Rust WASM](https://www.rust-lang.org/what/wasm)
+- [dwebchat.feathers.cloud](https://dwebchat.feathers.cloud/)
+- [dwebyvr.org](https://dwebyvr.org/)
+- [getdweb.net](https://getdweb.net/)
+- [z-space.ca](https://z-space.ca/)
+- [www.inkandswitch.com](https://www.inkandswitch.com/)
+- [hypha.coop](https://hypha.coop/)
+- [feathers.cloud](https://feathers.cloud)
 
 ::right::
 

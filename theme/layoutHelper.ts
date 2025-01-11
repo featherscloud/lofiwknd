@@ -28,7 +28,7 @@ export function handleBackground(background?: string, dim = false): CSSPropertie
         : undefined,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
   }
 
   if (!style.background)
